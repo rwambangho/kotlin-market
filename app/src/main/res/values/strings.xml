@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">carrotmarket</string>
+    <string name="used_items">used_items</string>
+    <string name="chat_room">채팅방</string>
+    <string name="send">send</string>
+    <string name="add_item">add_item</string>
+    <string name="add_image">add_image</string>
+    <string name="title">title</string>
+
 </resources>

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.carrotmarket.databinding.FragmentChatBinding
-import com.example.carrotmarket.databinding.FragmentHomeBinding
 
 class ChatFragment: Fragment() {
     lateinit var binding: FragmentChatBinding
