@@ -20,18 +20,31 @@
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:hint="이메일" />
 
         <EditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
+            android:hint="비밀번호" />
 
-        <Button
+        <EditText
+            android:id="@+id/edt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="이름" />
+
+        <EditText
+            android:id="@+id/edt_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="생년월일 (YYYY-MM-DD)" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/orange"
             android:text="회원가입" />
 
         <TextView

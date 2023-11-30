@@ -71,19 +71,51 @@ class AddArticleActivity : AppCompatActivity() {
             val title = titleEditText.text.toString()
             val price = priceEditText.text.toString()
             val sellerId = auth.currentUser?.uid.orEmpty()
+            val content = contentEditText.text.toString()
+            val uploadtime = System.currentTimeMillis()
 
             progressBar.isVisible = true
-            val enrollinf = hashMapOf(
-                "title" to title,
-                "price" to price,
-                "sellerId" to sellerId
-            )
 
-            db.collection("article").add(enrollinf).
-                    addOnSuccessListener {
+            if (selectedUri != null) {
+                // 예외 처리
+                val PhotoUri = selectedUri ?: return@setOnClickListener
+                uploadPhoto(
+                    PhotoUri,
+                    successHandler = { uri ->
+                        val enrollinf = hashMapOf(
+                            "title" to title,
+                            "price" to price,
+                            "sellerId" to sellerId,
+                            "uri" to uri,
+                            "content" to content,
+                            "uploadtime" to uploadtime.toString(),
+                            "sellvalue" to 0.toString(),
+                            "uid" to FirebaseAuth.getInstance().uid as String
+                        )
+                        uploadArticle(enrollinf, uri)
+                    },
+                    errorHandler = {
                     }
-                .addOnFailureListener {
-                }
+                )
+            } else {
+                val enrollinf = hashMapOf(
+                    "title" to title,
+                    "price" to price,
+                    "sellerId" to sellerId,
+                    "uid" to FirebaseAuth.getInstance().uid as String,
+                    "uri" to "",
+                    "content" to content,
+                    "uploadtime" to uploadtime.toString(),
+                    "sellvalue" to 0.toString(),
+                )
+                uploadArticle(enrollinf, "")
+            }
+
+//            db.collection("article").add(enrollinf).
+//                    addOnSuccessListener {
+//                    }
+//                .addOnFailureListener {
+//                }
             finish()
         }
     }
@@ -99,7 +131,7 @@ class AddArticleActivity : AppCompatActivity() {
             1010 -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startContentProvider()
             } else {
-                Toast.makeText(this, "권한을 거부하셨습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "권한이 거부되었습니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -110,7 +142,6 @@ class AddArticleActivity : AppCompatActivity() {
         startActivityForResult(intent, 2020)
     }
 
-    // startActivityForResult 에서 나온 결과를 onActivity 에서 받음
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -146,11 +177,13 @@ class AddArticleActivity : AppCompatActivity() {
     }
     private fun uploadPhoto(uri: Uri, successHandler: (String) -> Unit, errorHandler: () -> Unit) {
         val fileName = "${System.currentTimeMillis()}.png"
-        storage.reference.child("article/photo").child(fileName)
-            .putFile(uri)
+
+        val imageref = Firebase.storage.reference.child("$fileName")
+
+        imageref.putFile(uri)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    storage.reference.child("article/photo").child(fileName)
+                    storage.reference.child(fileName)
                         .downloadUrl
                         .addOnSuccessListener { uri ->
                             successHandler(uri.toString())
@@ -163,10 +196,17 @@ class AddArticleActivity : AppCompatActivity() {
             }
     }
 
-    private fun uploadArticle(sellerId: String, title: String, price: String, imageUrl: String) {
-        val model = ArticleModel(sellerId, title, System.currentTimeMillis(), "$price 원", imageUrl)
-        articleDB.push().setValue(model)
-        binding.progressBar.isVisible = false
+    private fun uploadArticle(enrollinf: HashMap<String, String>, imageUrl: String) {
+                    db.collection("article").add(enrollinf).
+                    addOnSuccessListener {
+                        Log.e("kms",it.id)
+                        db.collection("article").document(it.id).update("uid", it.id)
+                    }
+                .addOnFailureListener {
+                }
+//        val model = ArticleModel(sellerId, title, System.currentTimeMillis(), "$price 원", imageUrl)
+//        articleDB.push().setValue(model)
+//        binding.progressBar.isVisible = false
         finish()
     }
 }

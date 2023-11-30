@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".AddArticleActivity">
 
+    <EditText
+        android:id="@+id/contentEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="20dp"
+        android:hint="내용"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleEditText" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -43,7 +57,7 @@
         android:id="@+id/imageAddButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/purple_200"
+        android:background="@color/orange"
         android:text="@string/add_image"
         app:layout_constraintEnd_toEndOf="@id/photoImageView"
         app:layout_constraintStart_toStartOf="@id/photoImageView"
@@ -51,8 +65,8 @@
 
     <ImageView
         android:id="@+id/photoImageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toTopOf="@id/imageAddButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +92,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:hint="price"
+        android:hint="가격"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,8 +105,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/purple_200"
-        android:text="add"
+        android:background="@color/orange"
+        android:text="등록"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

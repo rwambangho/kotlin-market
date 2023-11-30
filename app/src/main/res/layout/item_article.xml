@@ -2,11 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/thumbnailImageView"
+        android:id="@+id/itemimg"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginStart="16dp"
@@ -18,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/itemtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,18 +29,18 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/thumbnailImageView"
+        app:layout_constraintStart_toEndOf="@id/itemimg"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/dateTextView"
+        android:id="@+id/itemdate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/titleTextView"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+        app:layout_constraintStart_toStartOf="@id/itemtitle"
+        app:layout_constraintTop_toBottomOf="@id/itemtitle" />
 
     <TextView
         android:id="@+id/priceTextView"
@@ -51,7 +52,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dateTextView" />
+        app:layout_constraintTop_toBottomOf="@id/itemdate" />
 
     <View
         android:layout_width="0dp"
@@ -60,4 +61,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/sellvalue"
+        android:layout_width="88dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@+id/itemimg"
+        app:layout_constraintTop_toBottomOf="@+id/itemdate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

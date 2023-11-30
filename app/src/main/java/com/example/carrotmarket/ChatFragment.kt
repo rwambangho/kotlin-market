@@ -1,7 +1,6 @@
 package com.example.carrotmarket
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +18,6 @@ class ChatFragment: Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentChatBinding.bind(view)
-        Log.e("kms","chat")
-
-
     }
 
     override fun onCreateView(

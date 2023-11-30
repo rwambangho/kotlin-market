@@ -24,6 +24,14 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/switch4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="판매중" />
+
     </LinearLayout>
 
     <View
@@ -50,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/purple_200"
+        android:backgroundTint="@color/orange"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
