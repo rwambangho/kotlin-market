@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
 
         binding.switch4.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
-                binding.switch4.text = "판매 완료"
+                binding.switch4.text = "판매완료"
                 val adapter = ArticleAdapter("complete")
                 binding.articleRecyclerView.adapter = adapter
             }else{

@@ -28,14 +28,12 @@
 
         <Switch
             android:id="@+id/switch4"
-            android:layout_width="125dp"
+            android:layout_width="150dp"
             android:layout_height="27dp"
-            android:layout_marginStart="200dp"
+            android:layout_marginStart="170dp"
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
-            android:text="판매중"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView4" />
+            android:text="판매중" />
 
     </LinearLayout>
 
