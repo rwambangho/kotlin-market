@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.carrotmarket.databinding.ActivityDetailBinding
 
 
-class DetailActivity: AppCompatActivity() {
+class DetailActivity: AppCompatActivity(),ConfirmDialogInterface {
 
     private val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
 
@@ -15,7 +15,7 @@ class DetailActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val inf = intent.getSerializableExtra("info") as HashMap<String,Any>
-        
+
         binding.detailprice.text = inf["price"] as? String +"원"
         binding.detailtitle.text = inf["title"] as? String
         val sell = inf["value"] as? String
@@ -26,13 +26,15 @@ class DetailActivity: AppCompatActivity() {
         }
 
         val uid = inf["uid"] as? String
+        val id = inf["id"] as? String
 
         binding.detailcontent.text = inf["content"] as? String
-       
+
         Glide.with(binding.detailimg)
             .load(inf["uri"] as? String)
             .into(binding.detailimg)
 
+        //게시글 수정 버튼
         binding.detailEditButton.setOnClickListener {
             val intent = Intent(this, EditArticleActivity::class.java)
             intent.putExtra("title", inf["title"] as? String)
@@ -42,5 +44,17 @@ class DetailActivity: AppCompatActivity() {
             startActivity(intent)
         }
 
+        //채팅 버튼
+        binding.detailChatButton.setOnClickListener {
+            val dialog = ConfirmDialog(
+                this, uid.toString(),id.toString())
+            dialog.isCancelable = false
+            dialog.show(this?.supportFragmentManager!!, "ConfirmDialog")
+        }
+
+    }
+
+    override fun onYesButtonClick(id: Int) {
+        super.onDestroy()
     }
 }
