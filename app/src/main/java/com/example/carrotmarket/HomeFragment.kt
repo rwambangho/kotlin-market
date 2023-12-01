@@ -21,12 +21,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
-        val adapter = ArticleAdapter("all")
+        val adapter = ArticleAdapter("selling")
         binding.articleRecyclerView.adapter = adapter
 
         binding.switch4.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
-                binding.switch4.text = "판매완료"
+                binding.switch4.text = "판매 완료"
                 val adapter = ArticleAdapter("complete")
                 binding.articleRecyclerView.adapter = adapter
             }else{

@@ -22,17 +22,17 @@ class ArticleAdapter(status: String) : RecyclerView.Adapter<ArticleAdapter.ViewH
     init {
         itemlist.clear()
         when (status) {
-            "all" -> {
-                missData.orderBy("uploadtime",Query.Direction.DESCENDING)
-                    .addSnapshotListener { querySnapshot, _ ->
-                        itemlist.clear()
-                        for(snapshot in querySnapshot!!.documents){
-                            var item = snapshot.toObject(ItemData::class.java)
-                            itemlist.add(item!!)
-                        }
-                        notifyDataSetChanged()
-                    }
-            }
+//            "all" -> {
+//                missData.orderBy("uploadtime",Query.Direction.DESCENDING)
+//                    .addSnapshotListener { querySnapshot, _ ->
+//                        itemlist.clear()
+//                        for(snapshot in querySnapshot!!.documents){
+//                            var item = snapshot.toObject(ItemData::class.java)
+//                            itemlist.add(item!!)
+//                        }
+//                        notifyDataSetChanged()
+//                    }
+//            }
             "selling" -> {
                 missData.orderBy("uploadtime", Query.Direction.DESCENDING)
                     .addSnapshotListener { querySnapshot, _ ->
