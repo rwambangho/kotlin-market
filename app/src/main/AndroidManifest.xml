@@ -29,6 +29,7 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".EditArticleActivity"></activity>
+        <activity android:name="ChatActivity"></activity>
     </application>
 
 </manifest>

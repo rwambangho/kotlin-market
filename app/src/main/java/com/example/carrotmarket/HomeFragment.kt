@@ -21,23 +21,21 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
-//        fragmentHomeBinding.articleRecyclerView.layoutManager = LinearLayoutManager(context)
-//        fragmentHomeBinding.articleRecyclerView.adapter = com.example.carrotmarket.ArticleAdapter()
-        val adapter = ArticleAdapter(true)
+        val adapter = ArticleAdapter("all")
         binding.articleRecyclerView.adapter = adapter
 
-//        binding.switch4.setOnCheckedChangeListener { compoundButton, isChecked ->
-//            if(isChecked){
-//                binding.switch4.text = "판매 완료"
-//                val adapter = ArticleAdapter(true)
-//                binding.articleRecyclerView.adapter = adapter
-//            }   else{
-//                binding.switch4.text = "판매중"
-//                val adapter = ArticleAdapter(false)
-//                binding.articleRecyclerView.adapter = adapter
-//            }
-//
-//        }
+        binding.switch4.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                binding.switch4.text = "판매 완료"
+                val adapter = ArticleAdapter("complete")
+                binding.articleRecyclerView.adapter = adapter
+            }else{
+                binding.switch4.text = "판매중"
+                val adapter = ArticleAdapter("selling")
+                binding.articleRecyclerView.adapter = adapter
+            }
+
+        }
 
 
         binding.addFloatingButton.setOnClickListener {

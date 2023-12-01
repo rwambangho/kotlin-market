@@ -15,35 +15,61 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
-class ArticleAdapter(switch: Boolean) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+class ArticleAdapter(status: String) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
     private val db: FirebaseFirestore = Firebase.firestore
     private val missData = db.collection("article")
     private var itemlist: ArrayList<ItemData> = arrayListOf()
     init {
-        if(switch){ //판매완료
-            missData.orderBy("uploadtime",Query.Direction.DESCENDING)
-                .whereEqualTo("sellvalue","1")
-                .addSnapshotListener { querySnapshot, _ ->
-                    itemlist.clear()
-                    for(snapshot in querySnapshot!!.documents){
-                        var item = snapshot.toObject(ItemData::class.java)
-                        itemlist.add(item!!)
+        itemlist.clear()
+        when (status) {
+            "all" -> {
+                missData.orderBy("uploadtime",Query.Direction.DESCENDING)
+                    .addSnapshotListener { querySnapshot, _ ->
+                        itemlist.clear()
+                        for(snapshot in querySnapshot!!.documents){
+                            var item = snapshot.toObject(ItemData::class.java)
+                            itemlist.add(item!!)
+                        }
+                        notifyDataSetChanged()
                     }
-                    notifyDataSetChanged()
-                }
-        }else if(!switch) {
-            missData.orderBy("uploadtime",Query.Direction.DESCENDING)
-                .whereEqualTo("sellvalue","0")
-                .addSnapshotListener { querySnapshot, _ ->
-                    itemlist.clear()
-                    for(snapshot in querySnapshot!!.documents){
-                        var item = snapshot.toObject(ItemData::class.java)
-                        itemlist.add(item!!)
+            }
+            "selling" -> {
+                missData.orderBy("uploadtime", Query.Direction.DESCENDING)
+                    .addSnapshotListener { querySnapshot, _ ->
+                        itemlist.clear()
+                        for (snapshot in querySnapshot!!.documents) {
+                            var item = snapshot.toObject(ItemData::class.java)
+                            if(item != null){
+                                val data = item?.sellvalue
+                                if(data != null){
+                                    if(data.contains("0", ignoreCase = true)){
+                                        itemlist.add(item!!)
+                                    }
+                                }
+                            }
+                        }
+                        notifyDataSetChanged()
                     }
-                    notifyDataSetChanged()
-                }
+            }
+            "complete" -> {
+                missData.orderBy("uploadtime", Query.Direction.DESCENDING)
+                    .addSnapshotListener { querySnapshot, _ ->
+                        itemlist.clear()
+                        for (snapshot in querySnapshot!!.documents) {
+                            var item = snapshot.toObject(ItemData::class.java)
+                            if(item != null){
+                                val data = item?.sellvalue
+                                if(data != null){
+                                    if(data.contains("1", ignoreCase = true)){
+                                        itemlist.add(item!!)
+                                    }
+                                }
+                            }
+                        }
+                        notifyDataSetChanged()
+                    }
+            }
         }
-
     }
 
 
@@ -63,15 +89,14 @@ class ArticleAdapter(switch: Boolean) : RecyclerView.Adapter<ArticleAdapter.View
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var viewholder = (holder as ViewHolder).itemView
-        Log.e("kss",itemlist[position].uri.toString())
         holder.title.text = itemlist[position].title
         holder.price.text = itemlist[position].price+"원"
         if(itemlist[position].sellvalue == "0"){ //0이면 판매중
             holder.value.text = "판매중"
         }else{  holder.value.text = "판매완료"}
 
-        
-        
+
+
         Glide.with(holder.itemimg)
             .load(itemlist[position].uri)
             .into(holder.itemimg)
