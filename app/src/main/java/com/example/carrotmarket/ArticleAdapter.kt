@@ -93,7 +93,9 @@ class ArticleAdapter(status: String) : RecyclerView.Adapter<ArticleAdapter.ViewH
         holder.price.text = itemlist[position].price+"원"
         if(itemlist[position].sellvalue == "0"){ //0이면 판매중
             holder.value.text = "판매중"
-        }else{  holder.value.text = "판매완료"}
+        } else {
+            holder.value.text = "판매완료"
+        }
 
 
 
