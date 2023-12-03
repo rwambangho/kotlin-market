@@ -55,12 +55,8 @@ class DetailActivity : AppCompatActivity(), ConfirmDialogInterface {
                 dialog.show(this.supportFragmentManager, "ConfirmDialog")
             }
         } else {
-            // "info" 키에 대한 Serializable 데이터가 올바르게 전달되지 않은 경우에 대한 처리
-            // 예를 들어, 적절한 오류 처리 또는 로깅을 수행할 수 있습니다.
-            // 여기서는 간단하게 로그 메시지를 출력합니다.
-            // 적절한 오류 처리 방식에 따라 수정하세요.
             println("Error: Intent data with key 'info' is null.")
-            finish() // 액티비티 종료 또는 다른 처리 방식을 선택하세요.
+            finish() // 액티비티 종료
         }
     }
 
