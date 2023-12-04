@@ -23,22 +23,27 @@ class ChatAdapter() : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
         missData
             .addSnapshotListener { querySnapshot, _ ->
                 itemlist.clear()
-                for (snapshot in querySnapshot!!.documents) {
-                    var item = snapshot.toObject(ChatListItem::class.java)
+                if (querySnapshot != null) {
+                    for (snapshot in querySnapshot.documents) {
+                        var item = snapshot.toObject(ChatListItem::class.java)
 
-                    if(item != null){
-                        val data = item?.sellerid
-                        if(data != null){
-                            if(data.contains(auth.currentUser?.uid.orEmpty(),ignoreCase = true)){
-                                itemlist.add(item!!)
+                        if (item != null) {
+                            val data = item.sellerid
+                            if (data != null) {
+                                if (data.contains(
+                                        auth.currentUser?.uid.orEmpty(),
+                                        ignoreCase = true
+                                    )
+                                ) {
+                                    itemlist.add(item)
+                                }
                             }
                         }
                     }
-
-
-
+                    notifyDataSetChanged()
+                } else {
+                    Log.e("ChatAdapter", "querySnapshot is null")
                 }
-                notifyDataSetChanged()
             }
     }
 
