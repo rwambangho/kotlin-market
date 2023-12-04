@@ -53,17 +53,22 @@ class ConfirmDialog(
         auth = FirebaseAuth.getInstance()
         buyerid = auth.currentUser?.uid ?: ""
         database = FirebaseDatabase.getInstance().reference.child("chats")
+
+
+
+
+
         //전송버튼
         binding.yesButton.setOnClickListener {
 
             val message = binding.sendtext.text
             val timestamp = System.currentTimeMillis()
-            val chatMessage = ChatMessage(buyerid, message.toString(), timestamp)
-
+            val chatMessage = ChatMessage(buyerid, message.toString(), timestamp,
+                sellerid.toString(),uid.toString())
             // Push the message to the database
 
             //판매자가 문서의 id가되고 그 아래 구매자id, 내용이 필드값으로 들어간다.
-            db.collection("chats").document(sellerid.toString())
+            db.collection("chats").document()
                 .set(chatMessage).addOnSuccessListener {
                 }
             dismiss()

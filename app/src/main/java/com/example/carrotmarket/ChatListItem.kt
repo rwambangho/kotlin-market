@@ -1,10 +1,8 @@
 package com.example.carrotmarket
 
 data class ChatListItem(
-    val buyerId: String,
-    val sellerId: String,
-    val itemTitle: String,
-    val key: Long
-) {
-    constructor(): this("", "", "", 0)
-}
+    val buyerid: String?=null,
+    val articleid: String?=null,
+    val content: String?=null,
+    val sellerid: String?=null
+)

@@ -20,7 +20,7 @@ class DetailActivity : AppCompatActivity(), ConfirmDialogInterface {
             binding.detailprice.text = inf["price"] as? String + "원"
             binding.detailtitle.text = inf["title"] as? String
 
-            val sell = inf["value"] as? String
+            val sell = inf["sellvalue"] as? String
             if (sell == "0") {
                 binding.detailstatus.text = "판매중"
             } else {

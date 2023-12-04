@@ -101,7 +101,7 @@ class ArticleAdapter(status: String) : RecyclerView.Adapter<ArticleAdapter.ViewH
                     "price" to currentItem.price,
                     "uri" to currentItem.uri,
                     "id" to currentItem.sellerId,
-                    "value" to currentItem.sellvalue,
+                    "value" to currentItem.sellvalue, // 'value'가 아닌 'sellvalue'로 수정
                     "content" to currentItem.content,
                     "uid" to currentItem.uid,
                 )
