@@ -56,8 +56,8 @@ class ChatAdapter() : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var viewholder = (holder as ViewHolder).itemView
         Log.e("kss",itemlist.size.toString())
-        holder.msg.text = "내용" + itemlist[position].content
-        holder.name.text = "구매자 id: " + itemlist[position].buyerid
+        holder.msg.text = "채팅내용 : " + itemlist[position].content
+        holder.name.text = "구매자 ID : " + itemlist[position].buyerid
 
     }
 

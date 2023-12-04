@@ -22,9 +22,9 @@ class DetailActivity : AppCompatActivity(), ConfirmDialogInterface {
 
             val sell = inf["sellvalue"] as? String
             if (sell == "0") {
-                binding.detailstatus.text = "판매중"
-            } else {
                 binding.detailstatus.text = "판매완료"
+            } else {
+                binding.detailstatus.text = "판매중"
             }
 
             val uid = inf["uid"] as? String
