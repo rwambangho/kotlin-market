@@ -48,6 +48,7 @@ name : LeeSungHan
 ![화면 캡처 2023-12-05 043017](https://github.com/KimMinSung55/kotlin-market/assets/121777977/ae53f56c-eb91-45bb-926d-a4cdd184f770)
 
 내 정보 화면에서 로그아웃 하실 수 있습니다.
+
 ![화면 캡처 2023-12-05 043028](https://github.com/KimMinSung55/kotlin-market/assets/121777977/080da444-5ccc-4b1b-8687-6a0da9697ded)
 
 **Full Changelog**: https://github.com/KimMinSung55/kotlin-market/commits/v1.0.1
